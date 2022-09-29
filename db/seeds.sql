@@ -15,13 +15,13 @@ VALUES
   INSERT INTO role
   (title, salary)
 VALUES
-  ('Manager', 10000),
-  ('Manager', 10000),
+  ('Manager', 11000),
+  ('Manager', 12000),
   ('Employee', 100),
   ('Employee', 100),
-  ('Manager', 10000),
+  ('Manager', 13000),
   ('Employee', 100),
-  ('Manager', 10000),
+  ('Manager', 14000),
   ('Employee', 100),
   ('Employee', 100),
   ('Employee', 100);

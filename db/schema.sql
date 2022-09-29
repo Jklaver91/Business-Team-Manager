@@ -27,6 +27,10 @@ CREATE TABLE employee (
     manager_id INT
 );
 
+                    -- associated data 
+-- name type                        || department_id INTEGER,
+-- FOREIGN KEY (name)               || FOREIGN KEY (department_id) 
+-- REFERENCES othertabletitle(data) || REFERENCES department(id),
 
 
 
