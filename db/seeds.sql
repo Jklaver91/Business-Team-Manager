@@ -15,27 +15,27 @@ VALUES
   INSERT INTO role
   (title, salary)
 VALUES
-  ('Manager', 11000),
-  ('Manager', 12000),
-  ('Employee', 100),
-  ('Employee', 100),
-  ('Manager', 13000),
-  ('Employee', 100),
-  ('Manager', 14000),
-  ('Employee', 100),
-  ('Employee', 100),
-  ('Employee', 100);
+  ('Manager', 16000),
+  ('Manager', 22000),
+  ('Employee', 10000),
+  ('Employee', 9000),
+  ('Manager', 17000),
+  ('Employee', 12000),
+  ('Manager', 24000),
+  ('Employee', 10000),
+  ('Employee', 12000),
+  ('Employee', 11000);
 
  INSERT INTO employee
-  (first_name, last_name)
+  (first_name, last_name, manager_id)
 VALUES
-  ('Joe', 'Joeson'),
-  ('Dan', 'Danson'),
-  ('Greg', 'Gregson'),
-  ('Tim', 'Timson'),
-  ('Kay', 'Kayson'),
-  ('Fae', 'Faeson'),
-  ('Pat', 'Patson'),
-  ('Bo', 'Boson'),
-  ('Jill', 'Jillson'),
-  ('Ham', 'Hamson');
+  ('Joe', 'Joeson', 1),
+  ('Dan', 'Danson', 1),
+  ('Greg', 'Gregson', 0),
+  ('Tim', 'Timson', 0),
+  ('Kay', 'Kayson', 1),
+  ('Fae', 'Faeson', 0),
+  ('Pat', 'Patson', 1),
+  ('Bo', 'Boson', 0),
+  ('Jill', 'Jillson', 0),
+  ('Ham', 'Hamson', 0);
