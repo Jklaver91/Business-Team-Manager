@@ -1,11 +1,7 @@
-DROP TABLE IF EXISTS department;
-DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS employee;
-CREATE DATABASE department;
-CREATE DATABASE role;
-CREATE DATABASE employee;
+DROP DATABASE IF EXISTS manage_db;
+CREATE DATABASE manage_db;
 
-USE department;
+USE manage_db;
 
 CREATE TABLE department (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -26,6 +22,7 @@ CREATE TABLE employee (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
+    manager_id INTEGER,
     role_id INTEGER,
     FOREIGN KEY (role_id)
     REFERENCES role(id)
