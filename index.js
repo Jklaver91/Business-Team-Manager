@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 const inquirer = require("inquirer");
-
+const addQuestions = require('./src/addQuestions');
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -38,6 +38,19 @@ function getAll() {
 
 function addEntry(){
    // run iquirer to capture department, role, salary, first_name, last_name, manager_id
+   inquirer. prompt(addQuestions)
+        .then(function ({inputDepartment, inputTitle, inputSalary, inputFirst, inputLast, inputManager}) {
+            console.log(inputDepartment, inputTitle, inputSalary, inputFirst, inputLast, inputManager);
+            db.query('INSERT INTO department (name) VALUES ('+inputDepartment+')');
+            db.query('INSERT INTO role (title, salary) VALUES ('+inputTitle+','+ inputSalary+')');
+            db.query('INSERT INTO employee (first_name, last_name, manager_id) VALUES ('+inputFirst+','+ inputLast+','+ inputManager+')');
+            
+            
+            db.query('SELECT * FROM department JOIN role ON department.id = role.id JOIN employee ON role.id = employee.id;', (err, result) =>{
+                if (err) console.log(err);
+                console.log(result);
+            });
+    });
 }
 
 function startProgram() {
