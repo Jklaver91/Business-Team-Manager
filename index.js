@@ -29,32 +29,59 @@ function getEmployee() {
     });
 }
 
+function getAll() {
+    db.query('SELECT * FROM department JOIN role ON department.id = role.id JOIN employee ON role.id = employee.id;', (err, result) =>{
+        if (err) console.log(err);
+        console.log(result);
+    });
+}
+
 function startProgram() {
-    inquirer.prompt([
+    inquirer. prompt([
         {
-        name: "tables",
-        type: "rawlist",
-        message: "Please select which table you wish to view.",
-        choices: ["Departments", "Roles", "Employees"]
+            name: "options",
+            type: "rawlist",
+            message: "Please select if you would like to view, add to, or delete from tables.",
+            choices: ["View", "Add", "Delete"]
         }
     ])
-    .then(function ({tables}) {
-            if (tables === "Departments") {
-                console.log('Department table');
-                getDepartment();
-            } 
-            else if (tables === "Roles") {
-                console.log('Role table');
-                getRole();
-            } 
-            else if (tables === "Employees") {
-                console.log('Employee table');
-                getEmployee();
-            } 
-            else {
-                console.log('all tables');
-            }
-        });
+    .then(function ({options}) {
+        if (options === "View") {
+            inquirer.prompt([
+                {
+                name: "tables",
+                type: "rawlist",
+                message: "Please select which table you wish to view.",
+                choices: ["Departments", "Roles", "Employees", "All"]
+                }
+            ])
+            .then(function ({tables}) {
+                    if (tables === "Departments") {
+                        console.log('Department table');
+                        getDepartment();
+                    } 
+                    else if (tables === "Roles") {
+                        console.log('Role table');
+                        getRole();
+                    } 
+                    else if (tables === "Employees") {
+                        console.log('Employee table');
+                        getEmployee();
+                    } 
+                    else {
+                        console.log('all tables');
+                        getAll();
+                    }
+                });
+        } 
+        else if (options === "Add") {
+            console.log('ADD');
+        } 
+        else {
+            console.log('DELETE');
+        } 
+    });
+    
 }
 
 startProgram();
