@@ -36,6 +36,50 @@ function getAll() {
     });
 }
 
+function addEntry(){
+    inquirer. prompt([
+        {
+            name: "addTable",
+            type: "rawlist",
+            message: "Please select the table you wish to add to.",
+            choices: ["Department", "Role", "Employee"]
+        }
+    ])
+    .then(function ({addTable}) {
+        if (addTable === "Department") {
+            console.log('Add Department');
+        } 
+        else if (addTable === "Role") {
+            console.log('Add Role');
+        } 
+        else {
+            console.log('Add Employee');
+        } 
+    });
+}
+
+function deleteEntry(){
+    inquirer. prompt([
+        {
+            name: "deleteTable",
+            type: "rawlist",
+            message: "Please select the table you wish to delete from.",
+            choices: ["Department", "Role", "Employee"]
+        }
+    ])
+    .then(function ({deleteTable}) {
+        if (deleteTable === "Department") {
+            console.log('Delete Department');
+        } 
+        else if (deleteTable === "Role") {
+            console.log('Delete Role');
+        } 
+        else {
+            console.log('Delete Employee');
+        } 
+    });
+}
+
 function startProgram() {
     inquirer. prompt([
         {
@@ -75,10 +119,10 @@ function startProgram() {
                 });
         } 
         else if (options === "Add") {
-            console.log('ADD');
+            addEntry();
         } 
         else {
-            console.log('DELETE');
+            deleteEntry();
         } 
     });
     
