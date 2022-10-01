@@ -41,9 +41,21 @@ function addEntry(){
    inquirer. prompt(addQuestions)
         .then(function ({inputDepartment, inputTitle, inputSalary, inputFirst, inputLast, inputManager}) {
             console.log(inputDepartment, inputTitle, inputSalary, inputFirst, inputLast, inputManager);
-            db.query('INSERT INTO department (name) VALUES ('+inputDepartment+')');
-            db.query('INSERT INTO role (title, salary) VALUES ('+inputTitle+','+ inputSalary+')');
-            db.query('INSERT INTO employee (first_name, last_name, manager_id) VALUES ('+inputFirst+','+ inputLast+','+ inputManager+')');
+            var newDepartment = inputDepartment;
+            var newTitle = inputTitle;
+            var newSalary = inputSalary;
+            var newFirst = inputFirst;
+            var newLast = inputLast;
+                if (inputManager === true) {
+                    var newManager = 1;
+                 }
+                 else {
+                    var newManager = 0;
+                 }
+            
+            db.query('INSERT INTO department(name) VALUES ("'+newDepartment+'")');
+            db.query('INSERT INTO role (title, salary) VALUES ("'+newTitle+'","'+newSalary+'")');
+            db.query('INSERT INTO employee (first_name, last_name, manager_id) VALUES ("'+newFirst+'","'+ newLast+'","'+ newManager+'")');
             
             
             db.query('SELECT * FROM department JOIN role ON department.id = role.id JOIN employee ON role.id = employee.id;', (err, result) =>{
