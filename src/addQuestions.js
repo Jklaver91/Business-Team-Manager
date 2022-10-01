@@ -64,12 +64,12 @@ const addQuestions =
                 return false;
             }
         }
-    },
-    {
-        name: "inputManager",
-        type: "confirm",
-        message: "Does the entrant have a manager?"
     }
+    // {
+    //     name: "inputManager",
+    //     type: "confirm",
+    //     message: "Does the entrant have a manager?"
+    // }
     ]
 
 module.exports = addQuestions

@@ -27,15 +27,15 @@ VALUES
   ('Employee', 11000);
 
  INSERT INTO employee
-  (first_name, last_name, manager_id)
+  (first_name, last_name)
 VALUES
-  ('Joe', 'Joeson', 1),
-  ('Dan', 'Danson', 1),
-  ('Greg', 'Gregson', 0),
-  ('Tim', 'Timson', 0),
-  ('Kay', 'Kayson', 1),
-  ('Fae', 'Faeson', 0),
-  ('Pat', 'Patson', 1),
-  ('Bo', 'Boson', 0),
-  ('Jill', 'Jillson', 0),
-  ('Ham', 'Hamson', 0);
+  ('Joe', 'Joeson'),
+  ('Dan', 'Danson'),
+  ('Greg', 'Gregson'),
+  ('Tim', 'Timson'),
+  ('Kay', 'Kayson'),
+  ('Fae', 'Faeson'),
+  ('Pat', 'Patson'),
+  ('Bo', 'Boson'),
+  ('Jill', 'Jillson'),
+  ('Ham', 'Hamson');
