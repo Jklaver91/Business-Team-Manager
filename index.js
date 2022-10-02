@@ -59,13 +59,70 @@ function addEntry(){
             getRole();
             db.query('INSERT INTO employee (first_name, last_name) VALUES ("'+newFirst+'","'+ newLast+'")');
             //,"'+ newManager+'"
-            getEmployee();
             getAll();
             startProgram();
     });
 }
+
+function updateEntry(){
+    inquirer.prompt ([
+    {
+        name:'update',
+        type:'rawlist',
+        message:'Please select which table you wish to update.',
+        choices:["Department", "Role", "Employee"]
+    }
+    ])
+    .then(function ({update}) {
+        if (update === "Department") {
+            inquirer.prompt([{
+                name: 'updateDepartment',
+                type: 'input',
+                message: 'Please enter the row id you you wish to update?.',
+                validate: inpDepInput => {
+                    if (inpDepInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter row id you wish to update');
+                        return false;
+                    }
+                    }
+                },
+                {
+                    name: 'departmentText',
+                    type: 'input',
+                    message: 'Please enter what you want the row to be updated to?',
+                    validate: depInput => {
+                        if (depInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter what you want the row to be updated to?');
+                            return false;
+                        }
+                        }  
+                }
+            ])
+            //then goes here?
+            .then(function ({updateDepartment, departmentText}) {
+                db.query(`UPDATE department SET department.name = (${departmentText}) WHERE id IN (${updateDepartment});`, (err, result) =>{
+                    if (err) console.log(err);
+                    console.log(result);
+            })
+            });
+            
+        }
+        else if (update === "Role"){
+
+        }
+        else {
+
+        }
+    })
+    
+}
+
 function deleteEntry(){
-    inquirer. prompt([
+    inquirer.prompt([
         {
             name: 'id',
             type: 'input',
@@ -98,7 +155,7 @@ function startProgram() {
             name: "options",
             type: "rawlist",
             message: "Please select if you would like to view, add to, or delete from tables.",
-            choices: ["View", "Add", "Delete"]
+            choices: ["View", "Add", "Update", "Delete"]
         }
     ])
     .then(function ({options}) {
@@ -137,6 +194,9 @@ function startProgram() {
         } 
         else if (options === "Add") {
             addEntry();
+        } 
+        else if (options === "Update") {
+            updateEntry();
         } 
         else {
 
