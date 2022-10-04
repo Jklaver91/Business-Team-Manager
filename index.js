@@ -83,7 +83,7 @@ function updateEntry(){
                     if (inpDepInput) {
                         return true;
                     } else {
-                        console.log('Please enter row id you wish to update');
+                        console.log('Please enter row id you wish to update!');
                         return false;
                     }
                     }
@@ -96,7 +96,7 @@ function updateEntry(){
                         if (depInput) {
                             return true;
                         } else {
-                            console.log('Please enter what you want the row to be updated to?');
+                            console.log('Please enter what you want the row to be updated to!');
                             return false;
                         }
                         }  
@@ -104,18 +104,120 @@ function updateEntry(){
             ])
             //then goes here?
             .then(function ({updateDepartment, departmentText}) {
-                db.query(`UPDATE department SET department.name = (${departmentText}) WHERE id IN (${updateDepartment});`, (err, result) =>{
+                console.log(updateDepartment, departmentText)
+                db.query(`UPDATE department SET name = '${departmentText}' WHERE id = (${updateDepartment});`, (err, result) =>{
                     if (err) console.log(err);
                     console.log(result);
             })
+            startProgram();
             });
             
         }
         else if (update === "Role"){
-
+            inquirer.prompt([{
+                name: 'updateRole',
+                type: 'input',
+                message: 'Please enter the row id you you wish to update?.',
+                validate: inpRoleInput => {
+                    if (inpRoleInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter row id you wish to update!');
+                        return false;
+                    }
+                    }
+                },
+                {
+                    name: 'roleSelect',
+                    type: 'rawlist',
+                    message: 'Please choose which section of the role table you wish to update.',
+                    choices:["Title", "Salary"]
+                    
+                    },
+                {
+                    name: 'roleText',
+                    type: 'input',
+                    message: 'Please enter what you want the row to be updated to?',
+                    validate: roleInput => {
+                        if (roleInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter what you want the row to be updated to!');
+                            return false;
+                        }
+                        }  
+                }
+            ])
+            //then goes here?
+            .then(function ({updateRole, roleText, roleSelect}) {
+                console.log(updateRole, roleText, roleSelect)
+                if (roleSelect === 'Title') {
+                    db.query(`UPDATE role SET title = '${roleText}' WHERE id = (${updateRole});`, (err, result) =>{
+                        if (err) console.log(err);
+                        console.log(result);
+                    })    
+                }
+                else {
+                    db.query(`UPDATE role SET salary = '${roleText}' WHERE id = (${updateRole});`, (err, result) =>{
+                        if (err) console.log(err);
+                        console.log(result);
+                    })  
+                }
+            startProgram();
+            });
         }
         else {
-
+            inquirer.prompt([{
+                name: 'updateEmployee',
+                type: 'input',
+                message: 'Please enter the row id you you wish to update?.',
+                validate: inpEmpInput => {
+                    if (inpEmpInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter row id you wish to update!');
+                        return false;
+                    }
+                    }
+                },
+                {
+                    name: 'employeeSelect',
+                    type: 'rawlist',
+                    message: 'Please choose which section of the employee table you wish to update.',
+                    choices:["First Name", "Last Name"]
+                    
+                    },
+                {
+                    name: 'employeeText',
+                    type: 'input',
+                    message: 'Please enter what you want the row to be updated to?',
+                    validate: employeeInput => {
+                        if (employeeInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter what you want the row to be updated to!');
+                            return false;
+                        }
+                        }  
+                }
+            ])
+            //then goes here?
+            .then(function ({updateEmployee, employeeText, employeeSelect}) {
+                console.log(updateEmployee, employeeText, employeeSelect)
+                if (employeeSelect === 'Title') {
+                    db.query(`UPDATE employee SET first_name = '${employeeText}' WHERE id = (${updateEmployee});`, (err, result) =>{
+                        if (err) console.log(err);
+                        console.log(result);
+                    })    
+                }
+                else {
+                    db.query(`UPDATE employee SET last_name = '${employeeText}' WHERE id = (${updateEmployee});`, (err, result) =>{
+                        if (err) console.log(err);
+                        console.log(result);
+                    })  
+                }
+            startProgram();
+            });
         }
     })
     
