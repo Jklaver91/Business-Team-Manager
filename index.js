@@ -46,19 +46,12 @@ function addEntry(){
             var newSalary = inputSalary;
             var newFirst = inputFirst;
             var newLast = inputLast;
-                // if (inputManager === true) {
-                //     var newManager = 1;
-                //  }
-                //  else {
-                //     var newManager = 0;
-                //  }
             
-            db.query('INSERT INTO department (name) VALUES ("'+newDepartment+'")');
+            db.query('INSERT INTO department (department) VALUES ("'+newDepartment+'")');
             getDepartment();
             db.query('INSERT INTO role (title, salary) VALUES ("'+newTitle+'","'+newSalary+'")');
             getRole();
             db.query('INSERT INTO employee (first_name, last_name) VALUES ("'+newFirst+'","'+ newLast+'")');
-            //,"'+ newManager+'"
             getAll();
             startProgram();
     });
@@ -105,10 +98,11 @@ function updateEntry(){
             //then goes here?
             .then(function ({updateDepartment, departmentText}) {
                 console.log(updateDepartment, departmentText)
-                db.query(`UPDATE department SET name = '${departmentText}' WHERE id = (${updateDepartment});`, (err, result) =>{
+                db.query(`UPDATE department SET department = '${departmentText}' WHERE id = (${updateDepartment});`, (err, result) =>{
                     if (err) console.log(err);
                     console.log(result);
             })
+            getDepartment();
             startProgram();
             });
             
@@ -163,6 +157,7 @@ function updateEntry(){
                         console.log(result);
                     })  
                 }
+            getRole();
             startProgram();
             });
         }
@@ -216,6 +211,7 @@ function updateEntry(){
                         console.log(result);
                     })  
                 }
+            getEmployee();
             startProgram();
             });
         }
@@ -247,6 +243,7 @@ function deleteEntry(){
                 if (err) console.log(err);
                 console.log(result);
         })
+        getAll();
         startProgram();
     })
 }

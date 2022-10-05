@@ -5,7 +5,7 @@ USE manage_db;
 
 CREATE TABLE department (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL
+    department VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE role (
