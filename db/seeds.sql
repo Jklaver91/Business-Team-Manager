@@ -1,3 +1,5 @@
+-- seeds default data 
+
 INSERT INTO department
   (department)
 VALUES
